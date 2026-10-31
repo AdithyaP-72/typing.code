@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0f0f0f;
+  --color-surface: #1a1a2e;
+  --color-surface-hover: #232342;
+  --color-primary: #00d4ff;
+  --color-success: #00ff88;
+  --color-error: #ff4757;
+  --color-warning: #ffa502;
+  --color-text: #e0e0e0;
+  --color-dimmed: #4a4a6a;
+  --color-accent: #7c3aed;
+  --color-border: #2a2a4a;
+  
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', monospace;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/fonts/webfonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dimmed);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Syntax highlighting colors matching VS Code dark+ theme */
+.token-keyword { color: #569cd6; }
+.token-type { color: #4ec9b0; }
+.token-string { color: #ce9178; }
+.token-number { color: #b5cea8; }
+.token-operator { color: #d4d4d4; }
+.token-punctuation { color: #d4d4d4; }
+.token-function { color: #dcdcaa; }
+.token-comment { color: #6a9955; }
+.token-preprocessor { color: #c586c0; }
