@@ -67,7 +67,7 @@ export default function ProblemBrowser({ onSelectProblem, initialFilter = 'solve
     return (
         <div className="min-h-screen bg-bg text-text pb-16">
             {/* Header */}
-            <div className="px-8 py-8 max-w-6xl mx-auto">
+            <div className="px-6 sm:px-10 lg:px-12 py-8 max-w-7xl xl:max-w-[1400px] mx-auto">
                 <div className="flex items-center justify-between">
                     <div>
                         <h1 className="text-3xl font-bold text-text flex items-center gap-3">
@@ -141,7 +141,7 @@ export default function ProblemBrowser({ onSelectProblem, initialFilter = 'solve
             </div>
 
             {/* Sub-Filters: Search, Category, Difficulty, Sort */}
-            <div className="px-8 max-w-6xl mx-auto mb-6">
+            <div className="px-6 sm:px-10 lg:px-12 max-w-7xl xl:max-w-[1400px] mx-auto mb-6">
                 <div className="flex flex-wrap gap-3 items-center">
                     {/* Search */}
                     <div className="relative flex-1 min-w-[240px]">
@@ -230,7 +230,7 @@ export default function ProblemBrowser({ onSelectProblem, initialFilter = 'solve
             </div>
 
             {/* Problem List */}
-            <div className="px-8 max-w-6xl mx-auto">
+            <div className="px-6 sm:px-10 lg:px-12 max-w-7xl xl:max-w-[1400px] mx-auto">
                 <div className="grid gap-2">
                     {filtered.map(problem => {
                         const prog = progress[problem.id];

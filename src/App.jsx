@@ -63,18 +63,17 @@ function MainApp() {
                 <div className="flex items-center gap-8">
                     <button
                         onClick={() => setView('dashboard')}
-                        className="flex items-center gap-2.5 text-left group cursor-pointer"
+                        className="text-left group cursor-pointer"
                     >
-                        <span className="text-xl">⚡</span>
-                        <span className="font-black text-lg tracking-tight text-text group-hover:text-primary transition-colors">
+                        <span className="font-black text-xl tracking-tight text-text group-hover:text-primary transition-colors">
                             DSA <span className="text-primary font-mono">TypeRacer</span>
                         </span>
                     </button>
 
-                    <nav className="flex items-center gap-1">
+                    <nav className="flex items-center gap-1.5">
                         <button
                             onClick={() => setView('dashboard')}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                 view === 'dashboard'
                                     ? 'bg-primary/15 text-primary border border-primary/30 shadow-[0_0_10px_rgba(0,212,255,0.15)]'
                                     : 'text-dimmed hover:text-text border border-transparent'
@@ -84,7 +83,7 @@ function MainApp() {
                         </button>
                         <button
                             onClick={() => handleBrowse('all')}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                 view === 'browser'
                                     ? 'bg-primary/15 text-primary border border-primary/30 shadow-[0_0_10px_rgba(0,212,255,0.15)]'
                                     : 'text-dimmed hover:text-text border border-transparent'
@@ -102,14 +101,14 @@ function MainApp() {
                             const random = solvedList[Math.floor(Math.random() * solvedList.length)];
                             handleSelectProblem(random);
                         }}
-                        className="bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_10px_rgba(0,212,255,0.1)]"
+                        className="bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_10px_rgba(0,212,255,0.1)]"
                     >
-                        <span>🎲</span> Quick Drill
+                        Quick Drill
                     </button>
 
                     <button
                         onClick={() => setIsSettingsOpen(true)}
-                        className="p-1.5 rounded-xl bg-surface hover:bg-surface-hover border border-border text-dimmed hover:text-text transition-colors cursor-pointer"
+                        className="p-2 rounded-xl bg-surface hover:bg-surface-hover border border-border text-dimmed hover:text-text transition-colors cursor-pointer"
                         title="Settings"
                     >
                         ⚙️

@@ -83,113 +83,111 @@ export default function Dashboard({ onSelectProblem, onBrowse }) {
 
     return (
         <div className="min-h-screen bg-[#09090d] text-[#e4e4ed] pb-24 font-mono relative overflow-hidden">
-            {/* Subtle radial ambient light */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(0,212,255,0.06),transparent_70%)] pointer-events-none" />
+            {/* Ambient lighting backdrop */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[350px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(0,212,255,0.06),transparent_70%)] pointer-events-none" />
 
-            <div className="max-w-5xl mx-auto px-8 pt-8 relative z-10">
+            <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-12 pt-10 relative z-10">
                 {/* Big Action Buttons Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
                     <button
                         onClick={() => onSelectProblem(getRandomSolved())}
-                        className="bg-primary hover:bg-[#20dbff] text-[#07090e] py-6 px-8 rounded-2xl font-black text-xl tracking-wide transition-all shadow-[0_0_30px_rgba(0,212,255,0.25)] hover:shadow-[0_0_45px_rgba(0,212,255,0.45)] flex items-center justify-center gap-3 cursor-pointer active:scale-[0.98]"
+                        className="bg-primary hover:bg-[#20dbff] text-[#07090e] py-8 px-10 rounded-2xl font-black text-2xl lg:text-3xl tracking-wide transition-all shadow-[0_0_35px_rgba(0,212,255,0.25)] hover:shadow-[0_0_55px_rgba(0,212,255,0.45)] flex items-center justify-center gap-3 cursor-pointer active:scale-[0.99]"
                     >
-                        <span className="text-2xl">⚡</span>
                         <span>Start Random Drill</span>
                     </button>
                     <button
                         onClick={() => onBrowse('all')}
-                        className="bg-[#12131a] hover:bg-[#181a24] border border-[#232738] hover:border-[#3b415a] text-white py-6 px-8 rounded-2xl font-black text-xl tracking-wide transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg active:scale-[0.98]"
+                        className="bg-[#12131a] hover:bg-[#181a24] border border-[#232738] hover:border-[#3b415a] text-white py-8 px-10 rounded-2xl font-black text-2xl lg:text-3xl tracking-wide transition-all flex items-center justify-center gap-3 cursor-pointer shadow-xl active:scale-[0.99]"
                     >
-                        <span>📂</span>
-                        <span>Browse Library <span className="text-primary font-mono font-bold">({problems.length})</span></span>
+                        <span>Browse Library <span className="text-primary font-mono">({problems.length})</span></span>
                     </button>
                 </div>
 
-                {/* Sleek KPI Strip */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-10">
-                    <div className="bg-[#101118]/80 border border-[#1b1d28] rounded-2xl p-5 relative overflow-hidden group hover:border-[#2b3044] transition-colors">
-                        <div className="text-[11px] uppercase tracking-wider text-[#6c7087] font-bold mb-1">Average Speed</div>
-                        <div className="flex items-baseline gap-1.5">
-                            <span className="text-3xl font-black text-white font-mono">{stats.avgWpm || '—'}</span>
-                            <span className="text-xs text-[#6c7087]">WPM</span>
+                {/* Expanded KPI Strip */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                    <div className="bg-[#101118]/85 border border-[#1b1d28] rounded-2xl p-7 relative overflow-hidden group hover:border-[#2b3044] transition-all">
+                        <div className="text-xs uppercase tracking-wider text-[#6c7087] font-bold mb-2">Average Speed</div>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl lg:text-5xl font-black text-white font-mono">{stats.avgWpm || '—'}</span>
+                            <span className="text-sm text-[#6c7087]">WPM</span>
                         </div>
                         {stats.peakWpm > 0 && (
-                            <div className="text-[10px] text-primary mt-2 font-mono">
+                            <div className="text-xs text-primary mt-3 font-mono font-bold">
                                 Peak: {stats.peakWpm} WPM
                             </div>
                         )}
                     </div>
 
-                    <div className="bg-[#101118]/80 border border-[#1b1d28] rounded-2xl p-5 relative overflow-hidden group hover:border-[#2b3044] transition-colors">
-                        <div className="text-[11px] uppercase tracking-wider text-[#6c7087] font-bold mb-1">Accuracy</div>
-                        <div className="flex items-baseline gap-1.5">
-                            <span className={`text-3xl font-black font-mono ${
+                    <div className="bg-[#101118]/85 border border-[#1b1d28] rounded-2xl p-7 relative overflow-hidden group hover:border-[#2b3044] transition-all">
+                        <div className="text-xs uppercase tracking-wider text-[#6c7087] font-bold mb-2">Accuracy</div>
+                        <div className="flex items-baseline gap-2">
+                            <span className={`text-4xl lg:text-5xl font-black font-mono ${
                                 stats.avgAccuracy >= 95 ? 'text-[#00ff88]' : stats.avgAccuracy >= 85 ? 'text-[#ffb703]' : 'text-white'
                             }`}>
                                 {stats.avgAccuracy ? `${stats.avgAccuracy}%` : '—'}
                             </span>
                         </div>
-                        <div className="text-[10px] text-[#6c7087] mt-2 font-mono">
+                        <div className="text-xs text-[#6c7087] mt-3 font-mono">
                             Keystroke precision
                         </div>
                     </div>
 
-                    <div className="bg-[#101118]/80 border border-[#1b1d28] rounded-2xl p-5 relative overflow-hidden group hover:border-[#2b3044] transition-colors">
-                        <div className="text-[11px] uppercase tracking-wider text-[#6c7087] font-bold mb-1">Solved Trained</div>
-                        <div className="flex items-baseline gap-1.5">
-                            <span className="text-3xl font-black text-[#00ff88] font-mono">{stats.practicedCount}</span>
-                            <span className="text-xs text-[#6c7087]">/ {solvedProblems.length}</span>
+                    <div className="bg-[#101118]/85 border border-[#1b1d28] rounded-2xl p-7 relative overflow-hidden group hover:border-[#2b3044] transition-all">
+                        <div className="text-xs uppercase tracking-wider text-[#6c7087] font-bold mb-2">Solved Trained</div>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl lg:text-5xl font-black text-[#00ff88] font-mono">{stats.practicedCount}</span>
+                            <span className="text-base text-[#6c7087]">/ {solvedProblems.length}</span>
                         </div>
-                        <div className="text-[10px] text-[#6c7087] mt-2 font-mono">
-                            From your sheet
+                        <div className="text-xs text-[#6c7087] mt-3 font-mono">
+                            From your solved pool
                         </div>
                     </div>
 
-                    <div className="bg-[#101118]/80 border border-[#1b1d28] rounded-2xl p-5 relative overflow-hidden group hover:border-[#2b3044] transition-colors">
-                        <div className="text-[11px] uppercase tracking-wider text-[#6c7087] font-bold mb-1">Streak</div>
-                        <div className="flex items-baseline gap-1.5">
-                            <span className="text-3xl font-black text-[#ffb703] font-mono">{streak > 0 ? streak : 1}</span>
-                            <span className="text-xs text-[#ffb703]">🔥</span>
+                    <div className="bg-[#101118]/85 border border-[#1b1d28] rounded-2xl p-7 relative overflow-hidden group hover:border-[#2b3044] transition-all">
+                        <div className="text-xs uppercase tracking-wider text-[#6c7087] font-bold mb-2">Streak</div>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl lg:text-5xl font-black text-[#ffb703] font-mono">{streak > 0 ? streak : 1}</span>
+                            <span className="text-xl text-[#ffb703]">🔥</span>
                         </div>
-                        <div className="text-[10px] text-[#6c7087] mt-2 font-mono">
+                        <div className="text-xs text-[#6c7087] mt-3 font-mono">
                             {stats.totalAttempts} total drills done
                         </div>
                     </div>
                 </div>
 
                 {/* Core Pattern Quick Launch Matrix */}
-                <div className="mb-10">
-                    <div className="flex items-center justify-between mb-3.5">
-                        <h2 className="text-sm font-black text-white tracking-tight uppercase">Core DSA Patterns</h2>
+                <div className="mb-12">
+                    <div className="flex items-center justify-between mb-5">
+                        <h2 className="text-lg font-black text-white tracking-tight uppercase">Core DSA Patterns</h2>
                         <button
                             onClick={() => onBrowse('solved')}
-                            className="text-xs text-primary hover:underline font-bold"
+                            className="text-xs lg:text-sm text-primary hover:underline font-bold"
                         >
                             View all 15 categories →
                         </button>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {categoryCards.map(cat => (
                             <div
                                 key={cat.id}
-                                className="bg-[#101118]/60 hover:bg-[#141620] border border-[#1b1d28] hover:border-[#2c3247] rounded-xl p-4 transition-all group flex flex-col justify-between"
+                                className="bg-[#101118]/70 hover:bg-[#141620] border border-[#1b1d28] hover:border-[#2c3247] rounded-2xl p-6 transition-all group flex flex-col justify-between"
                             >
                                 <div>
-                                    <div className="flex items-center justify-between mb-2">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-sm font-mono" style={{ color: cat.color }}>{cat.icon}</span>
-                                            <span className="text-xs font-bold text-white group-hover:text-primary transition-colors">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <div className="flex items-center gap-2.5">
+                                            <span className="text-base font-mono font-bold" style={{ color: cat.color }}>{cat.icon}</span>
+                                            <span className="text-sm font-bold text-white group-hover:text-primary transition-colors">
                                                 {cat.name}
                                             </span>
                                         </div>
-                                        <span className="text-[10px] text-[#6c7087] font-mono">
+                                        <span className="text-xs text-[#6c7087] font-mono font-bold">
                                             {cat.solved} solved
                                         </span>
                                     </div>
 
                                     {/* Progress line */}
-                                    <div className="w-full h-1 bg-[#181a24] rounded-full overflow-hidden mb-3">
+                                    <div className="w-full h-1.5 bg-[#181a24] rounded-full overflow-hidden mb-4">
                                         <div
                                             className="h-full rounded-full transition-all"
                                             style={{
@@ -200,15 +198,15 @@ export default function Dashboard({ onSelectProblem, onBrowse }) {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center justify-between pt-2 border-t border-[#181a24]">
-                                    <span className="text-[10px] text-[#6c7087]">
+                                <div className="flex items-center justify-between pt-3 border-t border-[#181a24]">
+                                    <span className="text-xs text-[#6c7087]">
                                         {cat.practiced} trained
                                     </span>
                                     <button
                                         onClick={() => handleDrillCategory(cat.id)}
-                                        className="text-[11px] font-bold text-primary hover:underline flex items-center gap-1 cursor-pointer"
+                                        className="text-xs font-bold text-primary hover:underline flex items-center gap-1 cursor-pointer"
                                     >
-                                        <span>Drill</span>
+                                        <span>Drill Pattern</span>
                                         <span>→</span>
                                     </button>
                                 </div>
@@ -217,52 +215,52 @@ export default function Dashboard({ onSelectProblem, onBrowse }) {
                     </div>
                 </div>
 
-                {/* Bottom Section: Recent Performance or Quick Starter */}
-                <div className="bg-[#101118]/60 border border-[#1b1d28] rounded-2xl p-6">
-                    <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#181a24]">
-                        <h3 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                            <span>🕒</span> Recent Drills
+                {/* Bottom Section: Recent Performance Feed */}
+                <div className="bg-[#101118]/70 border border-[#1b1d28] rounded-2xl p-7 mb-8">
+                    <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#181a24]">
+                        <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                            Recent Drills
                         </h3>
                         {recent.length > 0 && (
-                            <button onClick={() => onBrowse('all')} className="text-xs text-primary hover:underline">
+                            <button onClick={() => onBrowse('all')} className="text-xs text-primary hover:underline font-bold">
                                 Full History
                             </button>
                         )}
                     </div>
 
                     {recent.length === 0 ? (
-                        <div className="py-6 text-center">
-                            <p className="text-white text-sm font-bold mb-1">No drills logged yet</p>
+                        <div className="py-8 text-center">
+                            <p className="text-white text-base font-bold mb-1">No drills logged yet</p>
                             <p className="text-[#6c7087] text-xs max-w-sm mx-auto mb-4">
                                 Click "Start Random Drill" above or pick any problem to start tracking your WPM.
                             </p>
                             <button
                                 onClick={() => onSelectProblem(getRandomSolved())}
-                                className="text-xs px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg font-bold transition-colors cursor-pointer"
+                                className="text-xs px-5 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-xl font-bold transition-colors cursor-pointer"
                             >
                                 Take your first drill →
                             </button>
                         </div>
                     ) : (
-                        <div className="space-y-2">
+                        <div className="space-y-2.5">
                             {recent.map((r, i) => (
                                 <div
                                     key={i}
                                     onClick={() => onSelectProblem(r.problem)}
-                                    className="flex items-center justify-between p-3 rounded-xl bg-[#09090d]/60 hover:bg-[#141620] border border-[#1b1d28] hover:border-[#2d3348] transition-all cursor-pointer group"
+                                    className="flex items-center justify-between p-4 rounded-xl bg-[#09090d]/70 hover:bg-[#141620] border border-[#1b1d28] hover:border-[#2d3348] transition-all cursor-pointer group"
                                 >
-                                    <div className="flex items-center gap-3 min-w-0 pr-4">
-                                        <span className="text-[11px] text-[#6c7087] font-mono w-10 text-right shrink-0">
+                                    <div className="flex items-center gap-4 min-w-0 pr-4">
+                                        <span className="text-xs text-[#6c7087] font-mono w-10 text-right shrink-0">
                                             {r.problem.leetcodeNum > 0 ? `#${r.problem.leetcodeNum}` : ''}
                                         </span>
-                                        <span className="text-xs text-white group-hover:text-primary transition-colors font-bold truncate">
+                                        <span className="text-sm text-white group-hover:text-primary transition-colors font-bold truncate">
                                             {r.problem.title}
                                         </span>
                                     </div>
-                                    <div className="flex items-center gap-6 shrink-0 font-mono">
+                                    <div className="flex items-center gap-8 shrink-0 font-mono">
                                         <span className="text-xs text-[#00ff88] font-bold">{r.accuracy}% acc</span>
-                                        <span className="text-xs text-primary font-bold">{r.wpm} WPM</span>
-                                        <span className="text-[#6c7087] group-hover:text-primary text-xs">→</span>
+                                        <span className="text-sm text-primary font-bold">{r.wpm} WPM</span>
+                                        <span className="text-[#6c7087] group-hover:text-primary text-sm">→</span>
                                     </div>
                                 </div>
                             ))}
