@@ -40,13 +40,19 @@ export function saveProgress(problemId, result) {
             date: Date.now(),
         });
 
-        // Keep only last 50 attempts
         if (existing.history.length > 50) {
             existing.history = existing.history.slice(-50);
         }
 
         data[problemId] = existing;
         localStorage.setItem('dsa-typeracer-progress', JSON.stringify(data));
+
+        // Seamless auto-sync to cloud backend on Vercel
+        fetch('/api/progress', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ progress: data }),
+        }).catch(() => {});
     } catch (e) {
         console.error('Failed to save progress:', e);
     }
@@ -97,3 +103,34 @@ export function getDailyStreak() {
     }
 }
 
+// Automatically pulls cloud stats on app load if on Vercel with KV
+export async function autoSyncFromCloud(onUpdated) {
+    try {
+        const res = await fetch('/api/progress');
+        if (res.ok) {
+            const data = await res.json();
+            if (data.progress && Object.keys(data.progress).length > 0) {
+                const local = getAllProgress();
+                // Merge cloud + local so nothing is ever lost
+                const merged = { ...local };
+                Object.entries(data.progress).forEach(([k, v]) => {
+                    if (!merged[k]) {
+                        merged[k] = v;
+                    } else {
+                        merged[k] = {
+                            attempts: Math.max(merged[k].attempts || 0, v.attempts || 0),
+                            bestWpm: Math.max(merged[k].bestWpm || 0, v.bestWpm || 0),
+                            bestAccuracy: Math.max(merged[k].bestAccuracy || 0, v.bestAccuracy || 0),
+                            lastAttempt: Math.max(merged[k].lastAttempt || 0, v.lastAttempt || 0),
+                            history: [...(merged[k].history || []), ...(v.history || [])].slice(-50),
+                        };
+                    }
+                });
+                localStorage.setItem('dsa-typeracer-progress', JSON.stringify(merged));
+                if (onUpdated) onUpdated();
+            }
+        }
+    } catch {
+        // Runs offline or without backend seamlessly
+    }
+}

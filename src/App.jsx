@@ -5,12 +5,19 @@ import ProblemBrowser from './components/ProblemBrowser';
 import TypingArena from './components/TypingArena';
 import SettingsModal from './components/SettingsModal';
 import { problems } from './data/problems';
+import { autoSyncFromCloud } from './utils/metrics';
 
 function MainApp() {
     const [view, setView] = useState('dashboard'); // 'dashboard' | 'browser' | 'arena'
     const [currentProblem, setCurrentProblem] = useState(null);
     const [browserFilter, setBrowserFilter] = useState('solved');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [, setTick] = useState(0);
+
+    // Auto-sync progress from Vercel KV cloud on startup across any device
+    useEffect(() => {
+        autoSyncFromCloud(() => setTick(t => t + 1));
+    }, []);
 
     const handleSelectProblem = (problem) => {
         setCurrentProblem(problem);
