@@ -1,12 +1,10 @@
-# 🏎️ DSA TypeRacer
+# typing.code
 
-A typing practice app designed specifically for competitive programmers and interview candidates to build raw muscle memory for writing C++ solutions fast in Online Assessments (OAs).
-
-Instead of random prose, you type real, compact, human-written C++ DSA solutions (Blind 75, Striver's A2Z, NeetCode 150) under real typing metrics.
+A typing practice app designed specifically for me to write C++ solutions fast in Online Assessments.
 
 ---
 
-## ✨ Features
+## Features
 
 - **LeetCode / Monaco Editor Mechanics**:
   - **Lenient Mode (Default)**: Mistakes are highlighted in red without abruptly halting your cursor, preserving your typing flow.
@@ -24,59 +22,12 @@ Instead of random prose, you type real, compact, human-written C++ DSA solutions
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v18+)
-- npm or pnpm or yarn
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/dsa-typeracer.git
-cd dsa-typeracer
-
-# Install dependencies
-npm install
-
-# Start local dev server
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
-## 🌐 Deploy to Vercel
-
-### Option 1: Vercel CLI
-
-```bash
-npm i -g vercel
-vercel
-```
-
-### Option 2: GitHub Integration
-
-1. Push this repository to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new).
-3. Import your repository.
-4. Framework preset: **Vite**.
-5. Click **Deploy**.
-
----
 
 ## 🛠️ Tech Stack
 
 - **Framework**: React 19 + Vite
 - **Styling**: Tailwind CSS v4
 - **State & Storage**: React Context + localStorage
-- **Audio**: Web Audio API (synthesized click and chime sounds)
+- **Audio**: Web Audio API
 
----
 
-## 📄 License
-
-MIT License — Feel free to use and modify for your personal practice.
